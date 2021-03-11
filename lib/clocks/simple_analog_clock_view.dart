@@ -27,32 +27,25 @@ class _SimpleAnalogClockViewState extends State<SimpleAnalogClockView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white.withOpacity(.97),
-        appBar: AppBar(
-            backgroundColor: Colors.blueGrey,
-            title: Text('Simple Analog Clock'),
-            centerTitle: true,
-            automaticallyImplyLeading: false),
-        body: Container(
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClockPainterWrapper(date: _date),
+            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                ClockPainterWrapper(date: _date),
-                SizedBox(height: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                        '${_time.hourOfPeriod.toString().padLeft(2, '0')} : ${_time.minute.toString().padLeft(2, '0')}',
-                        style: Theme.of(context).textTheme.headline2),
-                    Text('${_time.period == DayPeriod.am ? 'AM' : 'PM'}',
-                        style: Theme.of(context).textTheme.headline6)
-                  ],
-                ),
+                Text(
+                    '${_time.hourOfPeriod.toString().padLeft(2, '0')} : ${_time.minute.toString().padLeft(2, '0')}',
+                    style: Theme.of(context).textTheme.headline2),
+                Text('${_time.period == DayPeriod.am ? 'AM' : 'PM'}',
+                    style: Theme.of(context).textTheme.headline6)
               ],
-            )));
+            ),
+          ],
+        ));
   }
 }
 
